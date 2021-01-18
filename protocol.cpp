@@ -10,11 +10,6 @@
 #include "util.h"
 #include "netbase.h"
 
-
-#ifndef WIN32
-# include <arpa/inet.h>
-#endif
-
 static const char* ppszTypeName[] =
 {
     "ERROR",
@@ -36,7 +31,10 @@ CMessageHeader::CMessageHeader()
 CMessageHeader::CMessageHeader(const char* pszCommand, unsigned int nMessageSizeIn)
 {
     memcpy(pchMessageStart, ::pchMessageStart, sizeof(pchMessageStart));
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
     strncpy(pchCommand, pszCommand, COMMAND_SIZE);
+#pragma GCC diagnostic pop
     nMessageSize = nMessageSizeIn;
     nChecksum = 0;
 }

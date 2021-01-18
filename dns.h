@@ -1,5 +1,4 @@
-#ifndef _DNS_H_
-#define _DNS_H_ 1
+#pragma once
 
 #include <stdint.h>
 
@@ -25,4 +24,3 @@ typedef struct {
 
 extern int dnsserver(dns_opt_t *opt);
 
-#endif
